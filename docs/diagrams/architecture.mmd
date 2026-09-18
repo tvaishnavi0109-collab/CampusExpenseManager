@@ -1,0 +1,9 @@
+flowchart LR
+    U[Student / User] --> CLI[Command Line Interface]
+    CLI --> M[ExpenseManager]
+    M --> ER[Expense Repository]
+    M --> RS[Report Service]
+    M --> B[Budget]
+    ER --> CSV[(expenses.csv)]
+    RS --> O[Reports / Analytics]
+    B --> O

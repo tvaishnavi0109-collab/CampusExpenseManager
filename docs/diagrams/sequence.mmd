@@ -1,0 +1,19 @@
+sequenceDiagram
+    actor User
+    participant Main
+    participant Manager as ExpenseManager
+    participant Repo as ExpenseRepository
+    participant File as expenses.csv
+
+    User->>Main: Select Add Expense
+    Main->>Manager: addExpense(input)
+    Manager->>Manager: Validate input
+    Manager->>Manager: Create Expense
+    Manager-->>Main: Success message
+    User->>Main: Select Save & Exit
+    Main->>Manager: save()
+    Manager->>Repo: save(expenses)
+    Repo->>File: Write CSV records
+    File-->>Repo: Saved
+    Repo-->>Manager: Complete
+    Manager-->>Main: Complete

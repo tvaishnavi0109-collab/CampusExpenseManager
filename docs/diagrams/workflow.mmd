@@ -1,0 +1,19 @@
+flowchart TD
+    A[Start Application] --> B[Load CSV]
+    B --> C[Display Main Menu]
+    C --> D{Select Operation}
+    D -->|Add| E[Read Expense Input]
+    E --> F[Validate Input]
+    F --> G[Store Expense]
+    D -->|View| H[Sort and Display Expenses]
+    D -->|Delete| I[Read Expense ID]
+    I --> J[Validate ID and Delete]
+    D -->|Budget| K[Set / Check Budget]
+    D -->|Reports| L[Calculate Monthly Analytics]
+    G --> C
+    H --> C
+    J --> C
+    K --> C
+    L --> C
+    C -->|Save & Exit| M[Write CSV]
+    M --> N[End]

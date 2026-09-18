@@ -1,0 +1,64 @@
+classDiagram
+    class Main {
+        +main(String[] args)
+    }
+
+    class ExpenseManager {
+        -List~Expense~ expenses
+        -Map~YearMonth,Budget~ budgets
+        -ExpenseRepository repository
+        -ReportService reportService
+        +addExpense()
+        +viewExpenses()
+        +deleteExpense()
+        +setBudget()
+        +showBudgetStatus()
+        +showReports()
+        +save()
+    }
+
+    class Expense {
+        -int id
+        -LocalDate date
+        -String category
+        -double amount
+        -String description
+        +getId()
+        +getDate()
+        +getCategory()
+        +getAmount()
+        +getDescription()
+        +toCsv()
+    }
+
+    class Budget {
+        -YearMonth month
+        -double limit
+        +remaining(double)
+        +usagePercent(double)
+    }
+
+    class ExpenseRepository {
+        -Path file
+        +load()
+        +save(List~Expense~)
+    }
+
+    class ReportService {
+        +total(List~Expense~)
+        +totalForMonth(List~Expense~, YearMonth)
+        +categoryTotals(List~Expense~, YearMonth)
+        +highestExpense(List~Expense~)
+        +countForMonth(List~Expense~, YearMonth)
+    }
+
+    class ExpenseException {
+        <<exception>>
+    }
+
+    Main --> ExpenseManager
+    ExpenseManager --> Expense
+    ExpenseManager --> Budget
+    ExpenseManager --> ExpenseRepository
+    ExpenseManager --> ReportService
+    ExpenseManager ..> ExpenseException
